@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>NUMERIQ — Controller Live</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0F1728; color: #F0E6CC;
+  font-family: 'Georgia', serif;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 40px 20px; gap: 28px;
+}
+h1 {
+  font-size: 28px; letter-spacing: 8px; color: #C9A84C;
+  text-transform: uppercase; text-align: center;
+  text-shadow: 0 0 20px rgba(201,168,76,0.4);
+}
+.sub { font-size: 14px; color: #B8A97A; letter-spacing: 2px; text-align: center; }
+.box {
+  width: 100%; max-width: 700px;
+  background: rgba(201,168,76,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 12px; padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+textarea {
+  width: 100%; height: 160px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 8px; padding: 16px;
+  color: #F0E6CC; font-size: 18px; line-height: 1.6;
+  font-family: 'Georgia', serif;
+  resize: none; outline: none;
+}
+textarea:focus { border-color: rgba(201,168,76,0.6); }
+textarea::placeholder { color: rgba(240,230,204,0.3); }
+.buttons { display: flex; gap: 12px; }
+button {
+  flex: 1; padding: 16px;
+  border: none; border-radius: 8px;
+  font-size: 16px; letter-spacing: 2px;
+  cursor: pointer; transition: all 0.2s;
+  font-family: 'Georgia', serif;
+}
+.btn-send {
+  background: linear-gradient(135deg, #C9A84C, #8B6E2A);
+  color: #0F1728; font-weight: bold;
+}
+.btn-send:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+.btn-clear {
+  background: rgba(201,168,76,0.08);
+  color: #B8A97A; border: 1px solid rgba(201,168,76,0.2);
+}
+.btn-clear:hover { background: rgba(201,168,76,0.15); }
+.status {
+  text-align: center; font-size: 13px; letter-spacing: 1px;
+  color: #B8A97A; min-height: 20px;
+}
+.status.ok { color: #6fcf97; }
+.status.err { color: #eb5757; }
+.hint {
+  font-size: 13px; color: rgba(184,169,122,0.6);
+  text-align: center; letter-spacing: 1px; line-height: 1.8;
+}
+kbd {
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 4px; padding: 2px 6px;
+  font-size: 12px; color: #C9A84C;
+}
+</style>
+</head>
+<body>
+
+<h1>NUMERIQ</h1>
+<div class="sub">Panou de control — Live TikTok</div>
+
+<div class="box">
+  <textarea id="txt" placeholder="Lipește aici răspunsul generat de Claude..."></textarea>
+  <div class="buttons">
+    <button class="btn-send" onclick="sendMsg()">✦ Trimite pe ecran</button>
+    <button class="btn-clear" onclick="clearMsg()">✕ Șterge</button>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
+<div class="hint">
+  <kbd>Ctrl+V</kbd> lipești textul · <kbd>Enter</kbd> sau butonul de mai sus trimite pe ecran<br>
+  Butonul <strong>Șterge</strong> curăță ecranul live
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    databaseURL: "https://numeriq-live-default-rtdb.europe-west1.firebasedatabase.app"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const msgRef = ref(db, 'message');
+
+  function status(msg, type=''){
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+
+  window.sendMsg = async function(){
+    const text = document.getElementById('txt').value.trim();
+    if(!text){ status('Scrie sau lipește un text mai întâi.', 'err'); return; }
+    try {
+      await set(msgRef, { text, ts: Date.now() });
+      status('✓ Apare pe ecran!', 'ok');
+    } catch(e) {
+      status('Eroare: ' + e.message, 'err');
+    }
+  }
+
+  window.clearMsg = async function(){
+    try {
+      await set(msgRef, { text: '', ts: Date.now() });
+      document.getElementById('txt').value = '';
+      status('Ecranul a fost curățat.', '');
+    } catch(e) {
+      status('Eroare: ' + e.message, 'err');
+    }
+  }
+
+  // Enter to send (Shift+Enter = new line)
+  document.getElementById('txt').addEventListener('keydown', function(e){
+    if(e.key==='Enter' && !e.shiftKey){
+      e.preventDefault();
+      window.sendMsg();
+    }
+  });
+</script>
+</body>
+</html>
