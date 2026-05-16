@@ -68,16 +68,19 @@ html, body {
   display: flex; flex-direction: column; overflow: hidden; z-index: 3;
 }
 .content-header {
-  padding: 26px 44px 20px;
+  padding: 26px 20px 20px;
   border-bottom: 1px solid rgba(201,168,76,0.12);
   justify-content: center; text-align: center;
-  font-family: 'Cinzel', serif; font-size: 58px;
-  letter-spacing: 4px; color: #C9A84C; text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(18px, 4.2vw, 52px);
+  white-space: nowrap;
+  letter-spacing: 2px; color: #C9A84C; text-transform: uppercase;
   text-shadow: 0 0 40px rgba(201,168,76,0.5), 0 0 80px rgba(201,168,76,0.2);
-  gap: 14px; line-height: 1.2;
+  gap: 10px; line-height: 1.2;
+  overflow: hidden;
 }
-.content-header::before { content: '✦'; color: #C9A84C; font-size: 16px; }
-.content-header::after { content: '✦'; color: #C9A84C; font-size: 16px; }
+.content-header::before { content: '✦'; color: #C9A84C; font-size: 14px; flex-shrink: 0; }
+.content-header::after { content: '✦'; color: #C9A84C; font-size: 14px; flex-shrink: 0; }
 .text-zone {
   flex: 1; padding: 40px 50px; position: relative;
   overflow: hidden; display: flex; align-items: flex-start;
