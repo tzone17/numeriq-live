@@ -68,13 +68,16 @@ html, body {
   display: flex; flex-direction: column; overflow: hidden; z-index: 3;
 }
 .content-header {
-  padding: 22px 44px 16px;
-  border-bottom: 1px solid rgba(201,168,76,0.08);
-  display: flex; align-items: center; gap: 12px;
-  font-family: 'Cinzel', serif; font-size: 20px;
-  letter-spacing: 3px; color: rgba(201,168,76,0.7); text-transform: uppercase;
+  padding: 26px 44px 20px;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  justify-content: center; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 22px;
+  letter-spacing: 4px; color: #C9A84C; text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(201,168,76,0.5);
+  gap: 14px;
 }
-.content-header::before { content: '✦'; color: #C9A84C; font-size: 13px; }
+.content-header::before { content: '✦'; color: #C9A84C; font-size: 16px; }
+.content-header::after { content: '✦'; color: #C9A84C; font-size: 16px; }
 .text-zone {
   flex: 1; padding: 40px 50px; position: relative;
   overflow: hidden; display: flex; align-items: flex-start;
