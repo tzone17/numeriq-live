@@ -114,8 +114,9 @@ html, body {
 .topic-wrap {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 24px; z-index: 2;
+  align-items: center; justify-content: flex-start;
+  padding-top: 40px;
+  gap: 20px; z-index: 2;
   opacity: 0;
   transition: opacity 0.6s ease;
   pointer-events: none;
@@ -123,13 +124,15 @@ html, body {
 .topic-wrap.visible { opacity: 1; }
 .topic-label {
   font-family: 'Cinzel', serif;
-  font-size: 22px; letter-spacing: 6px;
-  color: rgba(201,168,76,0.6); text-transform: uppercase;
+  font-size: clamp(18px, 4.2vw, 52px);
+  white-space: nowrap;
+  letter-spacing: 2px; color: #C9A84C; text-transform: uppercase;
+  text-shadow: 0 0 40px rgba(201,168,76,0.5), 0 0 80px rgba(201,168,76,0.2);
 }
 .topic-title {
   font-family: 'Cinzel', serif;
   font-size: 68px; font-weight: 700;
-  letter-spacing: 6px; color: #C9A84C;
+  letter-spacing: 4px; color: #C9A84C;
   text-align: center; line-height: 1.2;
   text-shadow: 0 0 50px rgba(201,168,76,0.6), 0 0 100px rgba(201,168,76,0.25);
 }
@@ -174,7 +177,8 @@ html, body {
     <div class="topic-wrap" id="topic-wrap">
       <div class="topic-label">Sesiunea de astăzi</div>
       <div class="topic-line"></div>
-      <div class="topic-title" id="topic-title">Cifra Personalității</div>
+      <div class="topic-title" id="topic-line1">Cifra</div>
+      <div class="topic-title" id="topic-line2">Personalității</div>
       <div class="topic-line"></div>
     </div>
     <div class="msg" id="msg"><span class="cursor"></span></div>
@@ -297,13 +301,11 @@ html, body {
   const msgRef = ref(db, 'message');
   const topicRef = ref(db, 'topic');
   const topicWrap = document.getElementById('topic-wrap');
-  const topicTitle = document.getElementById('topic-title');
-
   onValue(topicRef, (snapshot) => {
     const t = snapshot.val();
-    if(t && t.text && t.text.trim()) {
-      topicTitle.textContent = t.text.trim();
-    }
+    if(!t) return;
+    if(t.line1 !== undefined) document.getElementById('topic-line1').textContent = t.line1 || '';
+    if(t.line2 !== undefined) document.getElementById('topic-line2').textContent = t.line2 || '';
   });
 
   onValue(msgRef, (snapshot) => {
