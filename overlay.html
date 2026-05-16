@@ -109,6 +109,35 @@ html, body {
   box-shadow: 0 0 12px #C9A84C, 0 0 24px rgba(201,168,76,0.4);
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* TOPIC - mesaj de asteptare */
+.topic-wrap {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 24px; z-index: 2;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.topic-wrap.visible { opacity: 1; }
+.topic-label {
+  font-family: 'Cinzel', serif;
+  font-size: 22px; letter-spacing: 6px;
+  color: rgba(201,168,76,0.6); text-transform: uppercase;
+}
+.topic-title {
+  font-family: 'Cinzel', serif;
+  font-size: 68px; font-weight: 700;
+  letter-spacing: 6px; color: #C9A84C;
+  text-align: center; line-height: 1.2;
+  text-shadow: 0 0 50px rgba(201,168,76,0.6), 0 0 100px rgba(201,168,76,0.25);
+}
+.topic-line {
+  width: 200px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.6), transparent);
+}
+
 .footer {
   position: absolute; bottom: 52px; left: 0; right: 0;
   display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 3;
@@ -142,6 +171,12 @@ html, body {
   <div class="text-zone">
     <canvas id="particles"></canvas>
     <div class="glow-bg" id="glow"></div>
+    <div class="topic-wrap" id="topic-wrap">
+      <div class="topic-label">Sesiunea de astăzi</div>
+      <div class="topic-line"></div>
+      <div class="topic-title" id="topic-title">Cifra Personalității</div>
+      <div class="topic-line"></div>
+    </div>
     <div class="msg" id="msg"><span class="cursor"></span></div>
   </div>
 </div>
@@ -260,15 +295,31 @@ html, body {
 
   // Firebase listener
   const msgRef = ref(db, 'message');
+  const topicRef = ref(db, 'topic');
+  const topicWrap = document.getElementById('topic-wrap');
+  const topicTitle = document.getElementById('topic-title');
+
+  onValue(topicRef, (snapshot) => {
+    const t = snapshot.val();
+    if(t && t.text && t.text.trim()) {
+      topicTitle.textContent = t.text.trim();
+    }
+  });
+
   onValue(msgRef, (snapshot) => {
     const data = snapshot.val();
     if(!data) { clearText(); return; }
     if(data.text && data.text.trim()) {
+      topicWrap.classList.remove('visible');
       showText(data.text);
     } else {
       clearText();
+      topicWrap.classList.add('visible');
     }
   });
+
+  // Show topic on load
+  setTimeout(() => topicWrap.classList.add('visible'), 500);
 </script>
 </body>
 </html>
