@@ -294,6 +294,16 @@ window.autoCalc=function(){
 
 function status(msg,type=''){const el=document.getElementById('status');el.textContent=msg;el.className='status '+type;}
 
+window.setTopic=async function(){
+  const line1=document.getElementById('topicLine1').value.trim();
+  const line2=document.getElementById('topicLine2').value.trim();
+  if(!line1&&!line2){status('Scrie cel puțin un rând.','err');return;}
+  try{
+    await set(ref(db,'topic'),{line1,line2,ts:Date.now()});
+    status('✓ Titlul sesiunii setat!','ok');
+  }catch(e){status('Eroare: '+e.message,'err');}
+};
+
 window.sendResult=async function(){
   const pctRaw=document.getElementById('pct-badge').textContent.replace('%','').trim();
   const data={
