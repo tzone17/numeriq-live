@@ -203,8 +203,8 @@ function clearResult(){
 
 onValue(ref(db,'compat_v2'),snap=>{
   const d=snap.val();
-  if(!d||!d.active){clearResult();return;}
-  showResult(d);
+  if(!d||d.active===false||d.active===undefined||!d.name1){clearResult();return;}
+  if(d.active===true && d.name1){showResult(d);}
 });
 
 onValue(ref(db,'topic_v2'),snap=>{

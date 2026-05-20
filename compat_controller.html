@@ -246,7 +246,7 @@ window.send=async function(){
 
 window.clearAll=async function(){
   try{
-    await set(ref(db,'compat_v2'),{active:false,ts:Date.now()});
+    await set(ref(db,'compat_v2'),{active:false,name1:'',ts:Date.now()});
     ['name1','date1','name2','date2','msg','tl1','tl2'].forEach(id=>document.getElementById(id).value='');
     ['b1','b2'].forEach(id=>document.getElementById(id).textContent='—');
     ['s1','s2'].forEach(id=>document.getElementById(id).textContent='Introdu data nașterii');
