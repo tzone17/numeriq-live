@@ -2,31 +2,30 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<title>NUMERIQ — Controller Compatibilitate</title>
+<title>NUMERIQ Controller Compatibilitate</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0F1728;color:#F0E6CC;font-family:'Georgia',serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px;gap:16px;}
-h1{font-size:22px;letter-spacing:8px;color:#C9A84C;text-transform:uppercase;text-align:center;text-shadow:0 0 20px rgba(201,168,76,0.4);}
-.sub{font-size:12px;color:#B8A97A;letter-spacing:2px;text-align:center;}
-.box{width:100%;max-width:720px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;}
-.section-title{font-size:11px;letter-spacing:4px;color:rgba(201,168,76,0.6);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.1);padding-bottom:6px;}
-.row{display:flex;gap:8px;}
+body{background:#0F1728;color:#F0E6CC;font-family:'Georgia',serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px;gap:14px;}
+h1{font-size:20px;letter-spacing:8px;color:#C9A84C;text-transform:uppercase;text-align:center;}
+.sub{font-size:11px;color:#B8A97A;letter-spacing:2px;text-align:center;}
+.box{width:100%;max-width:700px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;}
+.stitle{font-size:10px;letter-spacing:4px;color:rgba(201,168,76,0.6);text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,0.1);padding-bottom:5px;}
 input,textarea{background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:10px 12px;color:#F0E6CC;font-size:14px;font-family:'Georgia',serif;outline:none;width:100%;}
-input:focus,textarea:focus{border-color:rgba(201,168,76,0.6);}
-input::placeholder,textarea::placeholder{color:rgba(240,230,204,0.3);}
-input[readonly]{color:#C9A84C;font-weight:bold;border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.06);cursor:default;}
-textarea{height:90px;resize:none;}
+input:focus,textarea:focus{border-color:rgba(201,168,76,0.5);}
+input::placeholder,textarea::placeholder{color:rgba(240,230,204,0.25);}
+textarea{height:80px;resize:none;}
+.row{display:flex;gap:8px;}
 .sep{height:1px;background:rgba(201,168,76,0.1);}
-.cv-row{display:flex;gap:8px;align-items:center;}
-.cv-badge{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:10px 14px;font-family:'Cinzel',serif;font-size:22px;color:#C9A84C;min-width:60px;text-align:center;font-weight:700;}
-.cv-calc{font-size:11px;color:#B8A97A;letter-spacing:0.5px;line-height:1.6;flex:1;}
+.badge{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:8px 14px;font-family:'Georgia',serif;font-size:20px;color:#C9A84C;font-weight:bold;min-width:70px;text-align:center;}
+.calc-text{font-size:11px;color:#B8A97A;line-height:1.6;flex:1;padding-top:4px;}
+.cv-row{display:flex;gap:8px;align-items:flex-start;}
 .pct-row{display:flex;gap:8px;align-items:center;}
-.pct-badge{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:10px 14px;font-family:'Cinzel',serif;font-size:22px;color:#C9A84C;min-width:80px;text-align:center;font-weight:700;}
-button{padding:12px;border:none;border-radius:8px;font-size:14px;letter-spacing:2px;cursor:pointer;font-family:'Georgia',serif;transition:all 0.2s;}
-.btn-send{background:linear-gradient(135deg,#C9A84C,#8B6E2A);color:#0F1728;font-weight:bold;}
-.btn-send:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,0.3);}
-.btn-clear{background:rgba(201,168,76,0.08);color:#B8A97A;border:1px solid rgba(201,168,76,0.2);}
-.status{text-align:center;font-size:12px;letter-spacing:1px;color:#B8A97A;min-height:16px;}
+button{padding:11px;border:none;border-radius:8px;font-size:13px;letter-spacing:2px;cursor:pointer;font-family:'Georgia',serif;transition:all 0.15s;width:100%;}
+.btn-gold{background:linear-gradient(135deg,#C9A84C,#8B6E2A);color:#0F1728;font-weight:bold;}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,168,76,0.3);}
+.btn-dim{background:rgba(201,168,76,0.08);color:#B8A97A;border:1px solid rgba(201,168,76,0.2);}
+.btn-sm{padding:8px;font-size:12px;}
+.status{text-align:center;font-size:12px;min-height:16px;color:#B8A97A;}
 .status.ok{color:#6fcf97;}.status.err{color:#eb5757;}
 </style>
 </head>
@@ -35,308 +34,227 @@ button{padding:12px;border:none;border-radius:8px;font-size:14px;letter-spacing:
 <div class="sub">Controller — Compatibilitate în Dragoste</div>
 
 <div class="box">
+  <!-- TITLU SESIUNE -->
+  <div class="stitle">Titlul sesiunii (apare pe ecran când nu e rezultat)</div>
+  <input id="tl1" type="text" placeholder="Rând 1 (ex: Compatibilitate în Dragoste)">
+  <input id="tl2" type="text" placeholder="Rând 2 (ex: cu partenerul, cu firma...)">
+  <button class="btn-gold btn-sm" onclick="setTopic()">✦ Setează titlul sesiunii</button>
+
+  <div class="sep"></div>
+
   <!-- PERSOANA 1 -->
-  <div class="section-title">Persoana 1</div>
-  <input id="name1" type="text" placeholder="Nume complet (ex: Maria Ionescu)" oninput="autoCalc()">
-  <input id="date1" type="text" placeholder="Data nașterii (ex: 22.05.1985)" oninput="autoCalc()">
+  <div class="stitle">Persoana 1</div>
+  <input id="name1" type="text" placeholder="Nume complet (ex: Maria Ionescu)" oninput="calc()">
+  <input id="date1" type="text" placeholder="Data nașterii zz.mm.aaaa (ex: 22.05.1985)" oninput="calc()">
   <div class="cv-row">
-    <div class="cv-badge" id="cv1-badge">—</div>
-    <div class="cv-calc" id="cv1-calc">Introdu numele și data nașterii</div>
+    <div class="badge" id="b1">—</div>
+    <div class="calc-text" id="s1">Introdu data nașterii</div>
   </div>
 
   <div class="sep"></div>
 
   <!-- PERSOANA 2 -->
-  <div class="section-title">Persoana 2</div>
-  <input id="name2" type="text" placeholder="Nume complet (ex: Ion Popescu)" oninput="autoCalc()">
-  <input id="date2" type="text" placeholder="Data nașterii (ex: 15.09.1983)" oninput="autoCalc()">
+  <div class="stitle">Persoana 2</div>
+  <input id="name2" type="text" placeholder="Nume complet (ex: Ion Popescu)" oninput="calc()">
+  <input id="date2" type="text" placeholder="Data nașterii zz.mm.aaaa (ex: 15.09.1983)" oninput="calc()">
   <div class="cv-row">
-    <div class="cv-badge" id="cv2-badge">—</div>
-    <div class="cv-calc" id="cv2-calc">Introdu numele și data nașterii</div>
+    <div class="badge" id="b2">—</div>
+    <div class="calc-text" id="s2">Introdu data nașterii</div>
   </div>
 
   <div class="sep"></div>
 
-  <!-- REZULTAT AUTO -->
-  <div class="section-title">Compatibilitate calculată automat</div>
+  <!-- REZULTAT -->
+  <div class="stitle">Compatibilitate (calculată automat)</div>
   <div class="pct-row">
-    <div class="pct-badge" id="pct-badge">—%</div>
-    <div style="font-size:13px;color:#B8A97A;letter-spacing:1px;" id="pct-label">Se calculează după introducerea datelor</div>
+    <div class="badge" id="bpct">—%</div>
+    <div class="calc-text" id="spct">Se completează după introducerea datelor</div>
   </div>
-  <textarea id="msg" placeholder="Mesajul va apărea automat — îl poți edita înainte să afișezi"></textarea>
+  <textarea id="msg" placeholder="Mesajul apare automat — îl poți edita înainte să afișezi"></textarea>
 
-  <div style="display:flex;gap:8px;">
-    <button class="btn-send" onclick="sendResult()">✦ Afișează pe ecran</button>
-    <button class="btn-clear" onclick="clearAll()">✕ Șterge tot</button>
+  <div class="row">
+    <button class="btn-gold" onclick="send()">✦ Afișează pe ecran</button>
+    <button class="btn-dim" onclick="clear()">✕ Șterge</button>
   </div>
-  <div class="status" id="status"></div>
+  <div class="status" id="st"></div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-const app=initializeApp({databaseURL:"https://numeriq-live-default-rtdb.europe-west1.firebasedatabase.app"});
-const db=getDatabase(app);
+const db = getDatabase(initializeApp({ databaseURL:"https://numeriq-live-default-rtdb.europe-west1.firebasedatabase.app" }));
 
-// ── CIFRA VIEȚII ──
-function calcCV(dateStr) {
-  // Format: zz.mm.aaaa
-  const parts = dateStr.trim().split('.');
-  if(parts.length !== 3) return null;
-  const [zi, luna, an] = parts;
-  if(!zi||!luna||!an||an.length<4) return null;
-
-  const allDigits = (zi+luna+an).replace(/\D/g,'');
-  if(!allDigits) return null;
-
-  // Sum all digits, reduce (preserve 11,22,33)
-  function reduce(n) {
-    while(n > 9 && n !== 11 && n !== 22 && n !== 33) {
-      n = String(n).split('').reduce((a,b)=>a+parseInt(b),0);
-    }
-    return n;
-  }
-
-  const sum = allDigits.split('').reduce((a,b)=>a+parseInt(b),0);
-  return reduce(sum);
-}
-
-function calcSteps(dateStr) {
-  const parts = dateStr.trim().split('.');
-  if(parts.length !== 3) return '';
-  const [zi, luna, an] = parts;
-  const allDigits = (zi+luna+an).replace(/\D/g,'');
-  const sum = allDigits.split('').reduce((a,b)=>a+parseInt(b),0);
-
-  function reduce(n) {
-    let steps = [n];
-    while(n > 9 && n !== 11 && n !== 22 && n !== 33) {
-      n = String(n).split('').reduce((a,b)=>a+parseInt(b),0);
-      steps.push(n);
-    }
-    return steps;
-  }
-  const steps = reduce(sum);
-  const digits = allDigits.split('').join('+');
-  return `${digits} = ${steps.join(' → ')}`;
-}
-
-// ── TABEL COMPATIBILITATE ──
-const COMPAT = {
-  '1-1':{pct:72,msg:'Două spirite independente — admirație reciprocă, dar luptă pentru control. Funcționează dacă fiecare are spațiul său.'},
-  '1-2':{pct:78,msg:'Echilibru între forță și sensibilitate. Se completează natural — unul conduce, celălalt armonizează.'},
-  '1-3':{pct:85,msg:'Energie și creativitate la putere maximă. Se inspiră reciproc și aduc bucurie în viața celuilalt.'},
-  '1-4':{pct:65,msg:'Ambiție vs stabilitate — viziuni diferite. Cu respect reciproc pot construi ceva durabil.'},
-  '1-5':{pct:80,msg:'Aventură și libertate — o pereche dinamică. Se atrag puternic dar au nevoie de spațiu.'},
-  '1-6':{pct:75,msg:'Liderul și îngrijitorul — se completează bine dacă 1 nu devine dominant.'},
-  '1-7':{pct:70,msg:'Forță și profunzime. 7 fascinează prin mister. Conexiune spirituală puternică.'},
-  '1-8':{pct:82,msg:'Două puteri care se respectă. Ambiție comună, succes material — ego-urile trebuie gestionate.'},
-  '1-9':{pct:77,msg:'Vizionar și umanist — o pereche care poate schimba lumea dacă lucrează împreună.'},
-  '1-11':{pct:83,msg:'Lider și vizionar — o combinație rară. 11 aduce intuiție, 1 aduce acțiunea.'},
-  '1-22':{pct:80,msg:'Două forțe de manifestare. Împreună pot construi lucruri extraordinare.'},
-  '1-33':{pct:74,msg:'1 aduce curajul, 33 aduce iubirea necondiționată. Frumos dar necesită maturitate.'},
-  '2-2':{pct:80,msg:'Empatie profundă și înțelegere reciprocă. Riscul e codependența — fiecare are nevoie de identitate proprie.'},
-  '2-3':{pct:82,msg:'Sensibilitate și creativitate — o pereche artistică și emoțional profundă.'},
-  '2-4':{pct:79,msg:'Stabilitate și grijă — o fundație solidă. 4 oferă securitate, 2 oferă căldură.'},
-  '2-5':{pct:68,msg:'Stabilitate vs libertate — o tensiune constantă. Atracție puternică, dar compromisuri necesare.'},
-  '2-6':{pct:90,msg:'Una dintre cele mai armonioase combinații. Ambii prețuiesc iubirea, familia și echilibrul.'},
-  '2-7':{pct:75,msg:'Inimă și minte — se completează profund. 7 oferă profunzime, 2 oferă căldură.'},
-  '2-8':{pct:73,msg:'Inimă sensibilă întâlnește ambiția. Funcționează dacă 8 nu uită să fie prezent emoțional.'},
-  '2-9':{pct:85,msg:'Iubire și compasiune — o pereche care dăruiește mult lumii. Conexiune emoțională profundă.'},
-  '2-11':{pct:88,msg:'Două naturi profund empatice — o legătură spirituală rară și emoționant de intensă.'},
-  '2-22':{pct:76,msg:'Sensibilitate și putere de manifestare. 22 o poate copleși — comunicarea e esențială.'},
-  '2-33':{pct:87,msg:'Iubire pură întâlnește maestrul iubirii. O combinație profund spirituală și vindecătoare.'},
-  '3-3':{pct:78,msg:'Creativitate explozivă și distracție garantată. Riscul e că amândoi evită responsabilitățile.'},
-  '3-4':{pct:70,msg:'Creativitate vs ordine — o tensiune productivă dacă sunt deschiși la compromis.'},
-  '3-5':{pct:88,msg:'Libertate, aventură și entuziasm — o pereche vibrantă și mereu în mișcare.'},
-  '3-6':{pct:83,msg:'Creativitate și iubire — 6 îi oferă lui 3 stabilitatea de care are nevoie.'},
-  '3-7':{pct:72,msg:'3 aduce lumina, 7 aduce profunzimea. Se fascinează reciproc dar au nevoie de răbdare.'},
-  '3-8':{pct:75,msg:'Creativitate și ambiție — o combinație puternică pentru succes dacă se susțin reciproc.'},
-  '3-9':{pct:85,msg:'Două naturi generoase și creative — o pereche care inspiră și luminează pe cei din jur.'},
-  '3-11':{pct:80,msg:'Creativitate și intuiție — o combinație artistică și spiritual elevată.'},
-  '3-22':{pct:74,msg:'3 aduce bucuria, 22 aduce viziunea. Pot crea împreună lucruri frumoase cu impact mare.'},
-  '3-33':{pct:86,msg:'Iubire, creativitate și generozitate — o pereche care aduce lumină în viețile altora.'},
-  '4-4':{pct:75,msg:'Stabilitate și ordine — o fundație de granit. Riscul e rigiditatea — au nevoie de spontaneitate.'},
-  '4-5':{pct:62,msg:'Ordine vs haos — o provocare constantă. Atracție puternică dar valori opuse.'},
-  '4-6':{pct:86,msg:'Familie, stabilitate și responsabilitate — una dintre cele mai durabile combinații.'},
-  '4-7':{pct:80,msg:'Practicism și înțelepciune — se respectă și se completează profund.'},
-  '4-8':{pct:83,msg:'Muncă, ambiție și stabilitate — o pereche construită pentru succes material și familial.'},
-  '4-9':{pct:70,msg:'Practicism vs idealism — viziuni diferite dar complementare dacă se respectă.'},
-  '4-11':{pct:72,msg:'4 oferă stabilitate, 11 oferă viziune. Se pot echilibra frumos dacă 4 e deschis la intuiție.'},
-  '4-22':{pct:85,msg:'Doi constructori — împreună pot ridica ceva durabil și cu impact real în lume.'},
-  '4-33':{pct:76,msg:'Stabilitate și iubire profundă — 33 îi aduce lui 4 căldura de care are nevoie.'},
-  '5-5':{pct:74,msg:'Libertate și aventură — o viață plină de experiențe. Riscul e lipsa de stabilitate.'},
-  '5-6':{pct:68,msg:'Libertate vs responsabilitate — o tensiune reală. Cu maturitate poate funcționa.'},
-  '5-7':{pct:82,msg:'Aventură și profunzime — se fascinează reciproc și se stimulează intelectual.'},
-  '5-8':{pct:76,msg:'Energie și ambiție — dinamici și motivați. Pot construi mult dacă direcționează bine energia.'},
-  '5-9':{pct:80,msg:'Libertate și viziune largă — o pereche care trăiește intens și cu sens.'},
-  '5-11':{pct:78,msg:'5 aduce aventura, 11 aduce profunzimea. O combinație fascinantă și imprevizibilă.'},
-  '5-22':{pct:72,msg:'Libertate vs construcție — 22 are nevoie de stabilitate pe care 5 nu o oferă întotdeauna.'},
-  '5-33':{pct:79,msg:'Libertate și iubire — 33 îl acceptă necondiționat, ceea ce îl face să rămână.'},
-  '6-6':{pct:85,msg:'Iubire, familie și armonie — o casă plină de căldură. Risc de supraprotecție reciprocă.'},
-  '6-7':{pct:74,msg:'Inimă și minte — 6 aduce căldura, 7 aduce profunzimea. O combinație rară și valoroasă.'},
-  '6-8':{pct:80,msg:'Familie și succes material — o pereche echilibrată între emoție și realizare.'},
-  '6-9':{pct:88,msg:'Iubire și umanitate — amândoi dăruiesc mult și se înțeleg profund. O conexiune frumoasă.'},
-  '6-11':{pct:85,msg:'Iubire și intuiție spirituală — o combinație profundă și vindecătoare.'},
-  '6-22':{pct:82,msg:'6 aduce căldura familiei, 22 aduce viziunea. O pereche care construiește cu iubire.'},
-  '6-33':{pct:92,msg:'Cea mai armonioasă combinație posibilă — ambii trăiesc pentru iubire și îngrijirea celorlalți.'},
-  '7-7':{pct:76,msg:'Doi înțelepți — se înțeleg profund dar riscă să se izoleze de lume împreună.'},
-  '7-8':{pct:74,msg:'Înțelepciune și putere — se respectă dar au abordări diferite ale vieții.'},
-  '7-9':{pct:83,msg:'Spiritualitate și umanitate — o pereche cu o conexiune profundă și un scop nobil comun.'},
-  '7-11':{pct:90,msg:'Două naturi profund spirituale — o conexiune rară, aproape karmică. Se înțeleg fără cuvinte.'},
-  '7-22':{pct:78,msg:'Înțelepciune și manifestare — 22 îi dă lui 7 un scop practic pentru viziunile sale.'},
-  '7-33':{pct:86,msg:'Spirit și iubire — o combinație de o frumusețe rară și profund spirituală.'},
-  '8-8':{pct:73,msg:'Două puteri — succes garantat dar lupte pentru control. Ego-urile trebuie gestionate.'},
-  '8-9':{pct:78,msg:'Putere și viziune — 9 îi aduce lui 8 un scop mai înalt dincolo de succesul material.'},
-  '8-11':{pct:79,msg:'Putere și intuiție — 11 vede ce 8 nu vede. O combinație puternică dacă se ascultă.'},
-  '8-22':{pct:88,msg:'Doi arhitecți ai succesului — împreună pot construi lucruri cu impact enorm.'},
-  '8-33':{pct:80,msg:'8 aduce puterea, 33 aduce iubirea — o pereche completă dacă 8 acceptă vulnerabilitatea.'},
-  '9-9':{pct:82,msg:'Doi vizionari umanisti — se înțeleg profund și împart o misiune comună în lume.'},
-  '9-11':{pct:87,msg:'Umanitate și intuiție — o combinație profund spirituală cu impact pozitiv în lume.'},
-  '9-22':{pct:84,msg:'Viziune și manifestare — 22 poate aduce în realitate visele mari ale lui 9.'},
-  '9-33':{pct:90,msg:'Compasiune și iubire necondiționată — o pereche care există pentru a vindeca și a inspira.'},
-  '11-11':{pct:85,msg:'Două spirite cu intuiție înaltă — o conexiune aproape telepatică. Intensă și profundă.'},
-  '11-22':{pct:88,msg:'Vizionar și constructor — 11 vede, 22 construiește. Potențial extraordinar împreună.'},
-  '11-33':{pct:89,msg:'Intuiție și iubire maestră — o relație spirituală de o profunzime rară.'},
-  '22-22':{pct:80,msg:'Doi constructori cu viziuni mari — pot crea împreună dar au nevoie de direcții aliniate.'},
-  '22-33':{pct:86,msg:'Manifestare și iubire — 22 construiește, 33 iubește. O combinație completă și echilibrată.'},
-  '33-33':{pct:88,msg:'Iubire maestră întâlnește iubire maestră — o conexiune profundă, vindecătoare și spirituală.'},
+// ── COMPAT TABLE ──
+const T={
+  '1-1':{p:72,m:'Două spirite independente — admirație reciprocă, dar luptă pentru control. Funcționează dacă fiecare are spațiul său.'},
+  '1-2':{p:78,m:'Echilibru între forță și sensibilitate. Se completează natural — unul conduce, celălalt armonizează.'},
+  '1-3':{p:85,m:'Energie și creativitate la putere maximă. Se inspiră reciproc și aduc bucurie în viața celuilalt.'},
+  '1-4':{p:65,m:'Ambiție vs stabilitate — viziuni diferite. Cu respect reciproc pot construi ceva durabil.'},
+  '1-5':{p:80,m:'Aventură și libertate — o pereche dinamică. Se atrag puternic dar au nevoie de spațiu.'},
+  '1-6':{p:75,m:'Liderul și îngrijitorul — se completează bine dacă niciunul nu devine dominant.'},
+  '1-7':{p:70,m:'Forță și profunzime. Se fascinează reciproc. Conexiune spirituală puternică.'},
+  '1-8':{p:82,m:'Două puteri care se respectă. Ambiție comună, succes material — ego-urile trebuie gestionate.'},
+  '1-9':{p:77,m:'Vizionar și umanist — o pereche care poate schimba lumea dacă lucrează împreună.'},
+  '1-11':{p:83,m:'Lider și vizionar — o combinație rară. 11 aduce intuiție, 1 aduce acțiunea.'},
+  '1-22':{p:80,m:'Două forțe de manifestare. Împreună pot construi lucruri extraordinare.'},
+  '1-33':{p:74,m:'Curaj și iubire necondiționată. Frumos dar necesită maturitate din ambele părți.'},
+  '2-2':{p:80,m:'Empatie profundă și înțelegere reciprocă. Riscul e codependența — fiecare are nevoie de identitate proprie.'},
+  '2-3':{p:82,m:'Sensibilitate și creativitate — o pereche artistică și emoțional profundă.'},
+  '2-4':{p:79,m:'Stabilitate și grijă — o fundație solidă. 4 oferă securitate, 2 oferă căldură.'},
+  '2-5':{p:68,m:'Stabilitate vs libertate — o tensiune constantă. Atracție puternică, dar compromisuri necesare.'},
+  '2-6':{p:90,m:'Una dintre cele mai armonioase combinații. Ambii prețuiesc iubirea, familia și echilibrul.'},
+  '2-7':{p:75,m:'Inimă și minte — se completează profund. 7 oferă profunzime, 2 oferă căldură.'},
+  '2-8':{p:73,m:'Inimă sensibilă întâlnește ambiția. Funcționează dacă 8 nu uită să fie prezent emoțional.'},
+  '2-9':{p:85,m:'Iubire și compasiune — o pereche care dăruiește mult lumii. Conexiune emoțională profundă.'},
+  '2-11':{p:88,m:'Două naturi profund empatice — o legătură spirituală rară și emoționant de intensă.'},
+  '2-22':{p:76,m:'Sensibilitate și putere de manifestare. 22 o poate copleși — comunicarea e esențială.'},
+  '2-33':{p:87,m:'Iubire pură întâlnește maestrul iubirii. O combinație profund spirituală și vindecătoare.'},
+  '3-3':{p:78,m:'Creativitate explozivă și distracție garantată. Riscul e că amândoi evită responsabilitățile.'},
+  '3-4':{p:70,m:'Creativitate vs ordine — o tensiune productivă dacă sunt deschiși la compromis.'},
+  '3-5':{p:88,m:'Libertate, aventură și entuziasm — o pereche vibrantă și mereu în mișcare.'},
+  '3-6':{p:83,m:'Creativitate și iubire — 6 îi oferă lui 3 stabilitatea de care are nevoie.'},
+  '3-7':{p:72,m:'Lumină și profunzime. Se fascinează reciproc dar au nevoie de răbdare.'},
+  '3-8':{p:75,m:'Creativitate și ambiție — o combinație puternică pentru succes dacă se susțin reciproc.'},
+  '3-9':{p:85,m:'Două naturi generoase și creative — o pereche care inspiră și luminează pe cei din jur.'},
+  '3-11':{p:80,m:'Creativitate și intuiție — o combinație artistică și spiritual elevată.'},
+  '3-22':{p:74,m:'Bucurie și viziune. Pot crea împreună lucruri frumoase cu impact mare.'},
+  '3-33':{p:86,m:'Iubire, creativitate și generozitate — o pereche care aduce lumină în viețile altora.'},
+  '4-4':{p:75,m:'Stabilitate și ordine — o fundație de granit. Riscul e rigiditatea — au nevoie de spontaneitate.'},
+  '4-5':{p:62,m:'Ordine vs haos — o provocare constantă. Atracție puternică dar valori opuse.'},
+  '4-6':{p:86,m:'Familie, stabilitate și responsabilitate — una dintre cele mai durabile combinații.'},
+  '4-7':{p:80,m:'Practicism și înțelepciune — se respectă și se completează profund.'},
+  '4-8':{p:83,m:'Muncă, ambiție și stabilitate — o pereche construită pentru succes material și familial.'},
+  '4-9':{p:70,m:'Practicism vs idealism — viziuni diferite dar complementare dacă se respectă.'},
+  '4-11':{p:72,m:'4 oferă stabilitate, 11 oferă viziune. Se pot echilibra frumos dacă sunt deschiși.'},
+  '4-22':{p:85,m:'Doi constructori — împreună pot ridica ceva durabil și cu impact real în lume.'},
+  '4-33':{p:76,m:'Stabilitate și iubire profundă — 33 îi aduce căldura de care are nevoie.'},
+  '5-5':{p:74,m:'Libertate și aventură — o viață plină de experiențe. Riscul e lipsa de stabilitate.'},
+  '5-6':{p:68,m:'Libertate vs responsabilitate — o tensiune reală. Cu maturitate poate funcționa.'},
+  '5-7':{p:82,m:'Aventură și profunzime — se fascinează reciproc și se stimulează intelectual.'},
+  '5-8':{p:76,m:'Energie și ambiție — dinamici și motivați. Pot construi mult dacă direcționează bine.'},
+  '5-9':{p:80,m:'Libertate și viziune largă — o pereche care trăiește intens și cu sens.'},
+  '5-11':{p:78,m:'Aventura întâlnește profunzimea. O combinație fascinantă și imprevizibilă.'},
+  '5-22':{p:72,m:'Libertate vs construcție — 22 are nevoie de stabilitate pe care 5 nu o oferă mereu.'},
+  '5-33':{p:79,m:'Libertate și iubire — 33 acceptă necondiționat, ceea ce îl face pe 5 să rămână.'},
+  '6-6':{p:85,m:'Iubire, familie și armonie — o casă plină de căldură. Risc de supraprotecție reciprocă.'},
+  '6-7':{p:74,m:'Inimă și minte — 6 aduce căldura, 7 aduce profunzimea. O combinație rară și valoroasă.'},
+  '6-8':{p:80,m:'Familie și succes material — o pereche echilibrată între emoție și realizare.'},
+  '6-9':{p:88,m:'Iubire și umanitate — amândoi dăruiesc mult și se înțeleg profund.'},
+  '6-11':{p:85,m:'Iubire și intuiție spirituală — o combinație profundă și vindecătoare.'},
+  '6-22':{p:82,m:'Căldura familiei și viziunea mare. O pereche care construiește cu iubire.'},
+  '6-33':{p:92,m:'Cea mai armonioasă combinație posibilă — ambii trăiesc pentru iubire și îngrijirea celorlalți.'},
+  '7-7':{p:76,m:'Doi înțelepți — se înțeleg profund dar riscă să se izoleze de lume împreună.'},
+  '7-8':{p:74,m:'Înțelepciune și putere — se respectă dar au abordări diferite ale vieții.'},
+  '7-9':{p:83,m:'Spiritualitate și umanitate — o conexiune profundă și un scop nobil comun.'},
+  '7-11':{p:90,m:'Două naturi profund spirituale — o conexiune rară, aproape karmică. Se înțeleg fără cuvinte.'},
+  '7-22':{p:78,m:'Înțelepciune și manifestare — 22 îi dă lui 7 un scop practic pentru viziunile sale.'},
+  '7-33':{p:86,m:'Spirit și iubire — o combinație de o frumusețe rară și profund spirituală.'},
+  '8-8':{p:73,m:'Două puteri — succes garantat dar lupte pentru control. Ego-urile trebuie gestionate.'},
+  '8-9':{p:78,m:'Putere și viziune — 9 îi aduce lui 8 un scop mai înalt dincolo de succesul material.'},
+  '8-11':{p:79,m:'Putere și intuiție — 11 vede ce 8 nu vede. O combinație puternică dacă se ascultă.'},
+  '8-22':{p:88,m:'Doi arhitecți ai succesului — împreună pot construi lucruri cu impact enorm.'},
+  '8-33':{p:80,m:'Putere și iubire — o pereche completă dacă 8 acceptă vulnerabilitatea.'},
+  '9-9':{p:82,m:'Doi vizionari umanisti — se înțeleg profund și împart o misiune comună în lume.'},
+  '9-11':{p:87,m:'Umanitate și intuiție — o combinație profund spirituală cu impact pozitiv în lume.'},
+  '9-22':{p:84,m:'Viziune și manifestare — 22 poate aduce în realitate visele mari ale lui 9.'},
+  '9-33':{p:90,m:'Compasiune și iubire necondiționată — o pereche care există pentru a vindeca și a inspira.'},
+  '11-11':{p:85,m:'Două spirite cu intuiție înaltă — o conexiune aproape telepatică. Intensă și profundă.'},
+  '11-22':{p:88,m:'Vizionar și constructor — 11 vede, 22 construiește. Potențial extraordinar împreună.'},
+  '11-33':{p:89,m:'Intuiție și iubire maestră — o relație spirituală de o profunzime rară.'},
+  '22-22':{p:80,m:'Doi constructori cu viziuni mari — pot crea împreună dar au nevoie de direcții aliniate.'},
+  '22-33':{p:86,m:'Manifestare și iubire — 22 construiește, 33 iubește. O combinație completă și echilibrată.'},
+  '33-33':{p:88,m:'Iubire maestră întâlnește iubire maestră — o conexiune profundă, vindecătoare și spirituală.'},
 };
 
-function getCompat(c1,c2){
-  const k1=`${c1}-${c2}`, k2=`${c2}-${c1}`;
-  return COMPAT[k1]||COMPAT[k2]||null;
+function getC(a,b){return T[`${a}-${b}`]||T[`${b}-${a}`]||null;}
+
+function red(n){while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce((a,b)=>a+parseInt(b),0);return n;}
+
+function cvFromDate(s){
+  const p=s.trim().split('.');
+  if(p.length!==3||p[2].length<4)return null;
+  const digs=(p[0]+p[1]+p[2]).replace(/\D/g,'');
+  if(digs.length<8)return null;
+  return red(digs.split('').reduce((a,b)=>a+parseInt(b),0));
 }
 
-function reduce(n){
-  while(n>9&&n!==11&&n!==22&&n!==33){
-    n=String(n).split('').reduce((a,b)=>a+parseInt(b),0);
-  }
-  return n;
+function steps(s){
+  const p=s.trim().split('.');
+  if(p.length!==3)return '';
+  const digs=(p[0]+p[1]+p[2]).replace(/\D/g,'');
+  let n=digs.split('').reduce((a,b)=>a+parseInt(b),0),arr=[n];
+  while(n>9&&n!==11&&n!==22&&n!==33){n=String(n).split('').reduce((a,b)=>a+parseInt(b),0);arr.push(n);}
+  return digs.split('').join('+')+' = '+arr.join(' → ');
 }
 
-function calcCVfromDate(dateStr){
-  const parts=dateStr.trim().split('.');
-  if(parts.length!==3) return null;
-  const [zi,luna,an]=parts;
-  if(!zi||!luna||!an||an.length<4) return null;
-  const allDigits=(zi+luna+an).replace(/\D/g,'');
-  if(!allDigits||allDigits.includes('N')) return null;
-  const sum=allDigits.split('').reduce((a,b)=>a+parseInt(b),0);
-  return reduce(sum);
-}
+let cv1=null,cv2=null;
 
-function calcSteps(dateStr){
-  const parts=dateStr.trim().split('.');
-  if(parts.length!==3) return '';
-  const [zi,luna,an]=parts;
-  const allDigits=(zi+luna+an).replace(/\D/g,'');
-  const sum=allDigits.split('').reduce((a,b)=>a+parseInt(b),0);
-  let n=sum, steps=[n];
-  while(n>9&&n!==11&&n!==22&&n!==33){n=String(n).split('').reduce((a,b)=>a+parseInt(b),0);steps.push(n);}
-  return `${allDigits.split('').join('+')} = ${steps.join(' → ')}`;
-}
-
-let cv1val=null, cv2val=null;
-
-window.autoCalc=function(){
-  const date1=document.getElementById('date1').value;
-  const date2=document.getElementById('date2').value;
-
-  // CV1
-  const c1=calcCVfromDate(date1);
-  cv1val=c1;
-  const badge1=document.getElementById('cv1-badge');
-  const calc1=document.getElementById('cv1-calc');
-  if(c1!==null){
-    badge1.textContent=c1;
-    calc1.textContent=calcSteps(date1);
-  } else {
-    badge1.textContent='—';
-    calc1.textContent='Introdu data în format zz.mm.aaaa';
-  }
-
-  // CV2
-  const c2=calcCVfromDate(date2);
-  cv2val=c2;
-  const badge2=document.getElementById('cv2-badge');
-  const calc2=document.getElementById('cv2-calc');
-  if(c2!==null){
-    badge2.textContent=c2;
-    calc2.textContent=calcSteps(date2);
-  } else {
-    badge2.textContent='—';
-    calc2.textContent='Introdu data în format zz.mm.aaaa';
-  }
-
-  // COMPAT
-  const pctBadge=document.getElementById('pct-badge');
-  const pctLabel=document.getElementById('pct-label');
-  const msgEl=document.getElementById('msg');
-
-  if(c1!==null&&c2!==null){
-    const compat=getCompat(c1,c2);
-    if(compat){
-      pctBadge.textContent=compat.pct+'%';
-      pctLabel.textContent=`Combinație ${c1} + ${c2}`;
-      msgEl.value=compat.msg;
-    } else {
-      pctBadge.textContent='—%';
-      pctLabel.textContent='Combinație negăsită în tabel';
-      msgEl.value='';
+window.calc=function(){
+  const d1=document.getElementById('date1').value;
+  const d2=document.getElementById('date2').value;
+  cv1=cvFromDate(d1);
+  cv2=cvFromDate(d2);
+  document.getElementById('b1').textContent=cv1!==null?cv1:'—';
+  document.getElementById('s1').textContent=cv1!==null?steps(d1):'Format: zz.mm.aaaa';
+  document.getElementById('b2').textContent=cv2!==null?cv2:'—';
+  document.getElementById('s2').textContent=cv2!==null?steps(d2):'Format: zz.mm.aaaa';
+  if(cv1!==null&&cv2!==null){
+    const c=getC(cv1,cv2);
+    if(c){
+      document.getElementById('bpct').textContent=c.p+'%';
+      document.getElementById('spct').textContent=`Combinație ${cv1} + ${cv2}`;
+      document.getElementById('msg').value=c.m;
+    }else{
+      document.getElementById('bpct').textContent='—%';
+      document.getElementById('spct').textContent='Combinație negăsită';
+      document.getElementById('msg').value='';
     }
-  } else {
-    pctBadge.textContent='—%';
-    pctLabel.textContent='Se calculează după introducerea datelor';
   }
 };
 
-function status(msg,type=''){const el=document.getElementById('status');el.textContent=msg;el.className='status '+type;}
+function st(m,t=''){const e=document.getElementById('st');e.textContent=m;e.className='status '+t;}
 
 window.setTopic=async function(){
-  const line1=document.getElementById('topicLine1').value.trim();
-  const line2=document.getElementById('topicLine2').value.trim();
-  if(!line1&&!line2){status('Scrie cel puțin un rând.','err');return;}
-  try{
-    await set(ref(db,'topic'),{line1,line2,ts:Date.now()});
-    status('✓ Titlul sesiunii setat!','ok');
-  }catch(e){status('Eroare: '+e.message,'err');}
+  const l1=document.getElementById('tl1').value.trim();
+  const l2=document.getElementById('tl2').value.trim();
+  if(!l1&&!l2){st('Scrie cel puțin un rând.','err');return;}
+  try{await set(ref(db,'topic_v2'),{line1:l1,line2:l2,ts:Date.now()});st('✓ Titlul setat pe ecran!','ok');}
+  catch(e){st('Eroare: '+e.message,'err');}
 };
 
-window.sendResult=async function(){
-  const pctRaw=document.getElementById('pct-badge').textContent.replace('%','').trim();
+window.send=async function(){
+  if(!document.getElementById('name1').value.trim()||!document.getElementById('name2').value.trim()){st('Completează numele ambelor persoane.','err');return;}
+  if(cv1===null||cv2===null){st('Verifică datele de naștere (format: zz.mm.aaaa).','err');return;}
+  const pct=document.getElementById('bpct').textContent.replace('%','').trim();
+  if(!pct||pct==='—'){st('Datele nu sunt complete.','err');return;}
   const data={
+    active:true,
     name1:document.getElementById('name1').value.trim(),
     date1:document.getElementById('date1').value.trim(),
-    cv1:cv1val!==null?String(cv1val):'',
+    cv1:String(cv1),
     name2:document.getElementById('name2').value.trim(),
     date2:document.getElementById('date2').value.trim(),
-    cv2:cv2val!==null?String(cv2val):'',
-    pct:pctRaw!=='—'?pctRaw:'',
+    cv2:String(cv2),
+    pct:pct,
     msg:document.getElementById('msg').value.trim(),
     ts:Date.now()
   };
-  if(!data.name1||!data.name2||!data.pct){status('Completează cel puțin numele și datele de naștere.','err');return;}
-  try{
-    await set(ref(db,'compat'),data);
-    status('✓ Apare pe ecran!','ok');
-  }catch(e){status('Eroare: '+e.message,'err');}
+  try{await set(ref(db,'compat_v2'),data);st('✓ Apare pe ecran!','ok');}
+  catch(e){st('Eroare: '+e.message,'err');}
 };
 
-window.clearAll=async function(){
+window.clear=async function(){
   try{
-    await set(ref(db,'compat'),{name1:'',ts:Date.now()});
-    ['name1','date1','name2','date2','msg'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('cv1-badge').textContent='—';
-    document.getElementById('cv2-badge').textContent='—';
-    document.getElementById('cv1-calc').textContent='Introdu numele și data nașterii';
-    document.getElementById('cv2-calc').textContent='Introdu numele și data nașterii';
-    document.getElementById('pct-badge').textContent='—%';
-    document.getElementById('pct-label').textContent='Se calculează după introducerea datelor';
-    cv1val=null; cv2val=null;
-    status('Ecranul a fost curățat.','');
-  }catch(e){status('Eroare: '+e.message,'err');}
+    await set(ref(db,'compat_v2'),{active:false,ts:Date.now()});
+    ['name1','date1','name2','date2','msg','tl1','tl2'].forEach(id=>document.getElementById(id).value='');
+    ['b1','b2'].forEach(id=>document.getElementById(id).textContent='—');
+    ['s1','s2'].forEach(id=>document.getElementById(id).textContent='Introdu data nașterii');
+    document.getElementById('bpct').textContent='—%';
+    document.getElementById('spct').textContent='Se completează după introducerea datelor';
+    cv1=null;cv2=null;
+    st('Ecranul a fost curățat.','');
+  }catch(e){st('Eroare: '+e.message,'err');}
 };
 </script>
 </body>
